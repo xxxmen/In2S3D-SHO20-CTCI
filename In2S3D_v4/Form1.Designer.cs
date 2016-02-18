@@ -38,6 +38,8 @@
             this.btnLoad = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.MainPanel = new System.Windows.Forms.Panel();
+            this.btnClear = new System.Windows.Forms.Button();
+            this.btnExport = new System.Windows.Forms.Button();
             this.saveListView = new System.Windows.Forms.ListView();
             this.SaveName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Rev = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -49,8 +51,7 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.btnExport = new System.Windows.Forms.Button();
-            this.btnClear = new System.Windows.Forms.Button();
+            this.btnSetting = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.MainPanel.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -136,6 +137,7 @@
             // 
             // MainPanel
             // 
+            this.MainPanel.Controls.Add(this.btnSetting);
             this.MainPanel.Controls.Add(this.btnClear);
             this.MainPanel.Controls.Add(this.btnExport);
             this.MainPanel.Controls.Add(this.saveListView);
@@ -152,6 +154,26 @@
             this.MainPanel.Name = "MainPanel";
             this.MainPanel.Size = new System.Drawing.Size(814, 538);
             this.MainPanel.TabIndex = 28;
+            // 
+            // btnClear
+            // 
+            this.btnClear.Location = new System.Drawing.Point(710, 50);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(75, 23);
+            this.btnClear.TabIndex = 34;
+            this.btnClear.Text = "btnClear";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            // 
+            // btnExport
+            // 
+            this.btnExport.Location = new System.Drawing.Point(710, 21);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(75, 23);
+            this.btnExport.TabIndex = 33;
+            this.btnExport.Text = "btnExport";
+            this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
             // saveListView
             // 
@@ -246,25 +268,15 @@
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // btnExport
+            // btnSetting
             // 
-            this.btnExport.Location = new System.Drawing.Point(710, 21);
-            this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(75, 23);
-            this.btnExport.TabIndex = 33;
-            this.btnExport.Text = "btnExport";
-            this.btnExport.UseVisualStyleBackColor = true;
-            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
-            // 
-            // btnClear
-            // 
-            this.btnClear.Location = new System.Drawing.Point(710, 50);
-            this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(75, 23);
-            this.btnClear.TabIndex = 34;
-            this.btnClear.Text = "btnClear";
-            this.btnClear.UseVisualStyleBackColor = true;
-            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            this.btnSetting.Location = new System.Drawing.Point(700, 316);
+            this.btnSetting.Name = "btnSetting";
+            this.btnSetting.Size = new System.Drawing.Size(75, 23);
+            this.btnSetting.TabIndex = 35;
+            this.btnSetting.Text = "btnSetting";
+            this.btnSetting.UseVisualStyleBackColor = true;
+            this.btnSetting.Click += new System.EventHandler(this.btnSetting_Click);
             // 
             // Form1
             // 
@@ -310,6 +322,7 @@
         private System.Windows.Forms.ColumnHeader UpdateTime;
         private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.Button btnSetting;
 
     }
 }

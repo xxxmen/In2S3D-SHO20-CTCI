@@ -28,19 +28,25 @@ namespace In2S3D_v4
         }
         public void initialDefault()
         {
+            Util.TaskInfo.TaskSetting.initProgSetting();
+
             labInputFilePath.Text = "Input File Path : ";
-            txtInputFilePath.Text = @"D:\Programa\In2S3D_c\123\INinput2.xlsx"; // for test
+            txtInputFilePath.Text = Util.TaskInfo.TaskSetting.InputFilePath; // for test
+            //txtInputFilePath.Text = @"D:\Programa\In2S3D_c\123\INinput2.xlsx"; // for test
+
             btnFileBrws1.Text = "Select";
             //openFileDialog1.InitialDirectory = @"D:\Programa\In2S3D_c";
             openFileDialog1.InitialDirectory = @"D:\Programa\In2S3D_c\123";
             btnLoad.Text = "Load";
             btnUpload.Text = "Upload";
             btnExport.Text = "Export";
-            Util.TaskInfo.TaskSetting.insertPtInstData = "A11";
-            Util.TaskInfo.TaskSetting.insertPtSymTyp = "A0";
+            btnClear.Text = "Clear";
+            btnSetting.Text = "Setting";
+            
 
-            Util.TaskInfo.TaskSetting.OutputFilePath = @"D:\Programa\In2S3D_c\123\0-InstrumentData_Test.xlsx";
-
+            //Util.TaskInfo.TaskSetting.insertPtInstData = "A11";
+            //Util.TaskInfo.TaskSetting.insertPtSymTyp = "A11";
+            //Util.TaskInfo.TaskSetting.OutputFilePath = @"D:\Programa\In2S3D_c\123\0-InstrumentData_Test.xlsx";
             //labOutputFilePath.Text = "Output File Path : ";
             //txtOutputFilePath.Text = @"D:\Programa\In2S3D_c\0-InstrumentData_Test.xlsx"; //for test
             //btnFileBrws2.Text = "Select";
@@ -208,6 +214,12 @@ namespace In2S3D_v4
         {
             SqlTsk.RunProc("procClearTable");
 
+        }
+
+        private void btnSetting_Click(object sender, EventArgs e)
+        {
+            extForms.progSetting formSetting = new extForms.progSetting();
+            formSetting.ShowDialog();
         }
 
 

@@ -59,7 +59,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.listBox1);
             this.Name = "SelectForm";
-            this.Text = "Form1";
+            this.Text = "Select Index";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SelectForm_FormClosing);
             this.ResumeLayout(false);
 

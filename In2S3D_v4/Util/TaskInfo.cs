@@ -7,6 +7,13 @@ namespace Util.TaskInfo
 {
     static class TaskSetting
     {
+        private static string _DefaultFolder;
+        public static string DefaultFolder
+        {
+            get { return _DefaultFolder; }
+            set { _DefaultFolder = value; }
+        }
+
         private static string _InputFilePath;
         public static string InputFilePath
         {
@@ -36,5 +43,16 @@ namespace Util.TaskInfo
         }
         
 
+
+
+        public static void initProgSetting()
+        {
+            DefaultFolder = @"D:\Programa\In2S3D_c\123";
+            InputFilePath = @"D:\Programa\In2S3D_c\123\INinput2.xlsx"; 
+            OutputFilePath = @"D:\Programa\In2S3D_c\123\0-InstrumentData_Test.xlsx";
+            insertPtInstData = "A11";
+            insertPtSymTyp = "A11";
+
+        }
     }
 }

@@ -68,7 +68,7 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
             this.Name = "InputBoxCsharp";
-            this.Text = "InputBoxCsharp";
+            this.Text = "Input Box";
             this.ResumeLayout(false);
             this.PerformLayout();
 
