@@ -35,9 +35,8 @@ namespace Util.DbConn
 
         public static void Upload(this System.Data.DataTable dt, string tableName)
         {
-            
+
             string query = "SELECT * from " + tableName;
-            
 
 
             using (SqlConnection conn = new SqlConnection(SqlConnStr))
@@ -45,9 +44,91 @@ namespace Util.DbConn
                 using (SqlDataAdapter oda = new SqlDataAdapter())
                 {
                     using (SqlCommandBuilder bu = new SqlCommandBuilder())
-                    { 
+                    {
                         using (SqlBulkCopy bulkcopy = new SqlBulkCopy(conn))
                         {
+                            oda.SelectCommand = new SqlCommand(query, conn);
+                            bulkcopy.DestinationTableName = "dbo." + tableName;
+                            DataTable dtsql = new DataTable();
+                            oda.Fill(dtsql);
+                            List<DataRow> lst_temp = dt.AsEnumerable().ToList();
+                            foreach (DataRow row in lst_temp)
+                            {
+                                dtsql.ImportRow(row);
+                            }
+                            conn.Open();
+
+                            bulkcopy.WriteToServer(dtsql);
+                            conn.Close();
+                        }
+                    }
+                }
+            }
+
+        }
+
+        public static void Upload2(this System.Data.DataTable dt, string tableName)
+        {
+
+            string query = "SELECT * from " + tableName;
+            string delQuery = "delete from " + tableName;
+
+
+
+            using (SqlConnection conn = new SqlConnection(SqlConnStr))
+            {
+                using (SqlDataAdapter oda = new SqlDataAdapter())
+                {
+                    using (SqlCommandBuilder bu = new SqlCommandBuilder())
+                    {
+                        using (SqlBulkCopy bulkcopy = new SqlBulkCopy(conn))
+                        {
+                            var cmd2 = conn.CreateCommand();
+                            cmd2.CommandText = delQuery;
+
+
+                            oda.SelectCommand = new SqlCommand(query, conn);
+                            bulkcopy.DestinationTableName = "dbo." + tableName;
+                            DataTable dtsql = new DataTable();
+                            oda.Fill(dtsql);
+                            List<DataRow> lst_temp = dt.AsEnumerable().ToList();
+                            foreach (DataRow row in lst_temp)
+                            {
+                                dtsql.ImportRow(row);
+                            }
+                            conn.Open();
+                            var result = cmd2.ExecuteNonQuery();
+                            bulkcopy.WriteToServer(dtsql);
+                            conn.Close();
+                        }
+                    }
+                }
+            }
+
+        }
+
+        public static void Upload3(this System.Data.DataTable dt, string tableName)
+        {
+
+            string query = "SELECT * from " + tableName;
+            string delQuery = "delete from " + tableName;
+
+
+
+            using (SqlConnection conn = new SqlConnection(SqlConnStr))
+            {
+                using (SqlDataAdapter oda = new SqlDataAdapter())
+                {
+                    using (SqlCommandBuilder bu = new SqlCommandBuilder())
+                    {
+                        using (SqlBulkCopy bulkcopy = new SqlBulkCopy(conn))
+                        {
+                            var cmd2 = conn.CreateCommand();
+                            cmd2.CommandText = delQuery;
+                            conn.Open();
+                            var result = cmd2.ExecuteNonQuery();
+                            conn.Close();
+
                             oda.SelectCommand = new SqlCommand(query, conn);
                             bulkcopy.DestinationTableName = "dbo." + tableName;
                             DataTable dtsql = new DataTable();
@@ -64,13 +145,56 @@ namespace Util.DbConn
                     }
                 }
             }
- 
+
         }
 
+        public static DataTable delNull(this System.Data.DataTable dt)
+        {
+            foreach (DataRow item in dt.Rows)
+            {
+                if (item[0] == DBNull.Value) item.Delete();
+            }
+            return dt;
+        }
 
-        public static void RunProc(this System.Data.DataTable dt, string procName)
-        { 
+        public static DataTable GetTable(string procName)
+        {
+            string procQuery = "exec " + procName;
+            DataTable dtsql = new DataTable();
+            using (SqlConnection conn = new SqlConnection(SqlConnStr))
+            {
+                using (SqlCommand command = new SqlCommand(procQuery, conn))
+                {
+                    using (SqlDataAdapter dataAdapter = new SqlDataAdapter(command))
+                    {
+                        dataAdapter.Fill(dtsql);
+                    }
+                }
+            }
+
+            return dtsql;
+        }
+
+        public static void RunProc(string procName)
+        {
+            string procQuery = "exec " + procName;
             
+            using (SqlConnection conn = new SqlConnection(SqlConnStr))
+            {
+                using (SqlCommand command = new SqlCommand(procQuery, conn))
+                {
+                    using (SqlDataAdapter dataAdapter = new SqlDataAdapter(command))
+                    {
+                        var cmd2 = conn.CreateCommand();
+                        cmd2.CommandText = procQuery;
+                        conn.Open();
+                        var result = cmd2.ExecuteNonQuery();
+                        conn.Close();
+                    }
+                }
+            }
+
+         
         }
 
     }

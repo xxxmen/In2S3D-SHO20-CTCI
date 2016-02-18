@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Util.TaskInfo
 {
-    class TaskSetting
+    static class TaskSetting
     {
         private static string _InputFilePath;
         public static string InputFilePath
@@ -21,6 +21,19 @@ namespace Util.TaskInfo
             set { _OutputFilePath = value; }
         }
 
+        private static string _insertPtInstData;
+        public static string insertPtInstData
+        {
+            get { return _insertPtInstData; }
+            set { _insertPtInstData = value; }
+        }
+
+        private static string _insertPtSymTyp;
+        public static string insertPtSymTyp
+        {
+            get { return _insertPtSymTyp; }
+            set { _insertPtSymTyp = value; }
+        }
         
 
     }

@@ -50,6 +50,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExlAddin\Read2Datatable.cs" />
+    <Compile Include="ExlAddin\Write2Exl.cs" />
+    <Compile Include="extForms\InputBoxCsharp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="extForms\InputBoxCsharp.Designer.cs">
+      <DependentUpon>InputBoxCsharp.cs</DependentUpon>
+    </Compile>
     <Compile Include="extForms\SelectForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -69,6 +76,9 @@
     <Compile Include="Util\DbConn.cs" />
     <Compile Include="Util\GeneralInfo.cs" />
     <Compile Include="Util\TaskInfo.cs" />
+    <EmbeddedResource Include="extForms\InputBoxCsharp.resx">
+      <DependentUpon>InputBoxCsharp.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="extForms\SelectForm.resx">
       <DependentUpon>SelectForm.cs</DependentUpon>
     </EmbeddedResource>
